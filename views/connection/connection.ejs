@@ -1,0 +1,79 @@
+<%- include('../partials/header.ejs')%>
+  <main>
+    <section>
+      <h2>
+        <%= story.name%>
+      </h2>
+
+      <p>&nbsp;</p>
+      
+      
+
+      <div>
+        <div class="event_image">
+          <img src="<%=story.image%>" height="200" alt="Logo">
+        </div>
+        <p>&nbsp;</p>
+        <p><b>Hosted By: </b>
+          <%= story.HostedBy%>
+        </p>
+        <p>&nbsp;</p>
+        <p> <b>Details: </b>
+          <%= story.Details%>
+        </p>
+        <p>&nbsp;</p>
+        <p> <b>Date: </b>
+          <%= story.date%>
+        </p>
+        <p>&nbsp;</p>
+        <p><b>Location: </b>
+          <%= story.Location%>
+        </p>
+        <p>&nbsp;</p>
+        <p><b>StartTime: </b>
+          <%= story.StartTime%>
+        </p>
+        <p>&nbsp;</p>
+        <p><b>EndTime: </b>
+          <%= story.EndTime%>
+        </p>
+        <p>&nbsp;</p>
+        
+      </div>
+
+      <% if (user) { %>					
+				<%if(user == story.author._id){%>
+					<div class="nav_article">					
+						<form>
+							<button type="submit" formmethod="GET" formaction="/connections/<%= story._id%>/update">Update</button>
+							<button type="submit" formmethod="POST" formaction="/connections/<%= story._id%>?_method=DELETE">Delete</button>
+						</form>
+					</div>
+				<% } else { %>
+					<div class="nav_article">	
+						<h3><%=count%> people are going. Are you interested in going?</h3>&nbsp;
+						<form>
+							<button class="yes" type="submit" formmethod="POST" formaction="/rsvp/<%= story._id%>/Yes/updateRsvp?_method=PUT">Yes</button>
+							<button class="no" type="submit" formmethod="POST" formaction="/rsvp/<%= story._id%>/No/updateRsvp?_method=PUT">No</button>
+							<button class="maybe" type="submit" formmethod="POST" formaction="/rsvp/<%= story._id%>/Maybe/updateRsvp?_method=PUT">Maybe</button>
+						</form>
+					</div>
+				<% } %>
+				<% } else { %>
+					<div class="nav_article">					
+						<h3><%=count%> people are going. Are you interested in going?</h3>&nbsp;							
+						<form>
+							<button class="yes" type="submit" formmethod="POST" formaction="/rsvp/<%= story._id%>/Yes/updateRsvp?_method=PUT">Yes</button>
+							<button class="no" type="submit" formmethod="POST" formaction="/rsvp/<%= story._id%>/No/updateRsvp?_method=PUT">No</button>
+							<button class="maybe" type="submit" formmethod="POST" formaction="/rsvp/<%= story._id%>/Maybe/updateRsvp?_method=PUT">Maybe</button>
+						</form>
+					</div>
+				<% } %>
+		
+			<div class="event_details">
+				<h3>Event Details</h3>
+				<p><%=story.Details%></p>
+			</div>			
+    </section>
+  </main>
+  <%- include("../partials/footer.ejs") %>

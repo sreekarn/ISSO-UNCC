@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs')%>
+    <div class="login">
+        <form action="/connections/<%=story.id%>?_method=PUT" method="POST">
+            <P>
+                <LABEL for="EventCategory">Event Category:</LABEL>
+                <INPUT type="text" name="EventCategory" id="EventCategory" value="<%= story.EventCategory%>" required><BR><BR>
+                <LABEL for="name">Topic Name:</LABEL>
+                <INPUT type="text" name="name" id="name" value="<%= story.name%>" required><BR><BR>
+                <LABEL for="Host">Host:</LABEL>
+                <INPUT type="text" name="HostedBy" id="Host" value="<%= story.HostedBy%>" required><BR><BR>
+                <LABEL for="Details">Details:</LABEL>
+                <INPUT type="text" name="Details" id="Details" value="<%= story.Details%>" required minlength="18"><BR><BR>
+                <LABEL for="Where">Where:</LABEL>
+                <INPUT type="text" name="Location" id="Where" value="<%= story.Location%>" required><BR><BR>
+                <LABEL for="When">When:</LABEL>
+                <INPUT type="date" name="date" id="When" value="<%= story.date%>" required><BR><BR>
+                <LABEL for="StartTime">Start Time:</LABEL>
+                <INPUT type="time" name="StartTime" id="StartTime" value="<%= story.StartTime%>" required><BR><BR>
+                <LABEL for="EndTime">End Time:</LABEL>
+                <INPUT type="time" name="EndTime" id="EndTime" value="<%= story.EndTime%>" required><BR><BR>
+                <label for="img">Select image:</label>
+                <input type="text" id="img" name="image" value="<%= story.image%>" required><br><br>
+                <button type="submit">Submit</button>
+            </P>
+        </form>
+    </div>
+    <%- include('../partials/footer.ejs')%>

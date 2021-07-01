@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ISSO UNCC</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <header class="banner">
+    <h1><a href="/index"><img src="/images/uncc.png" height="50" alt="Logo"></a> &emsp;ISSO-UNCC</h1>
+    <div class="inbanner">
+      
+      <%if(!user){%>
+        <a href='/users/new'><b>Sign Up</b></a>
+        <a href='/users/login'><b>Login</b></a>
+        <%}else{%>
+          <a href="/newConnection"><b>Create Event</b></a>
+        <a href='/users/profile'><b>Profile</b></a>
+        <a href='/users/logout'><b>Logout</b></a>
+        <%}%>
+      
+    </div>
+    <p>International Student and Scholar Office at University Of North Carolina at Charlotte</p>
+  </header>
+  <nav>
+
+    <ul>
+
+      <li><a href="/connections">Week's Events</a></li>
+      <%if(user){%>
+      <p id='welcome'>Welcome, <%=name%></p>
+      <%}%>
+      
+    </ul>
+    
+  </nav>
+
+  <% if(errorMessages.length > 0) {%>
+    <% errorMessages.forEach(message=>{%>
+        <div class='error'>
+            <%=message%>
+        </div>
+        <%});%>
+            <%}%>
+
+                <% if(successMessages.length > 0) {%>
+
+                    <% successMessages.forEach(message=>{%>
+                        <div class='success'>
+                            <%=message%>
+                        </div>
+                        <%});%>
+                            <%}%>

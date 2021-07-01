@@ -1,0 +1,59 @@
+<%- include('../partials/header.ejs')%>
+		<div class="articles">
+			<div class="all_events">
+				<h2><%=name%>'s Events</h2>
+		<% if(connections.length > 0) {%>	
+		<form>		
+			<table>
+				<tr>
+					<th>Event Name</th>
+    				<th>Category</th>				
+					<th>Actions</th>
+				</tr>
+				<% connections.forEach(element=>{%>
+					<tr>
+						<td><%=element.name%></td>
+						<td><%=element.EventCategory%></td>  
+     					<td>
+							<button type="submit" id="updateButton" formmethod="GET" formaction="/connections/<%= element._id%>/update" class="event_action" >Update</button>
+							<button type="submit" formmethod="POST" formaction="/connections/<%= element._id%>?_method=DELETE" class="event_action">Delete</button>						
+						</td>
+					</tr>				
+					<%});%>
+			</table>
+		</form>
+			<%} else { %>
+				<h2>You dont own any events</h2>
+			<% } %>	
+		</div>
+		
+			<div class="all_events">
+				<h2><%=name%>'s RSVP's</h2>
+		<% if(rsvps.length > 0) {%>	
+		<form>		
+			<table>
+				<tr>
+					<th>Event Name</th>
+					<th>Category</th>  
+					<th>Going?</th>  				
+    				<th>Actions</th>
+				</tr>
+				<% rsvps.forEach(element=>{%>
+					<tr>
+						<td><%=element.connection.name%></td>
+						<td><%=element.connection.EventCategory%></td>  
+						<td><%=element.action%></td>   				
+     					<td>
+							<button type="submit" id="updateButton" formmethod="GET" formaction="/connections/<%=element.connection._id%>" class="event_action" >Update</button>
+							<button type="submit" formmethod="POST" formaction="/rsvp/<%= element.connection._id%>?_method=DELETE" class="event_action">Delete</button>						
+						</td>
+					</tr>
+					<%});%>
+			</table>
+		</form>
+			<%} else { %>
+				<h2>You have not rsvped any events.</h2>
+			<%} %>
+	</div>
+	
+	<%- include("../partials/footer.ejs") %>
